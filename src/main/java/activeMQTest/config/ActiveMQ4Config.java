@@ -50,10 +50,14 @@ public class ActiveMQ4Config {
 	@Bean
 	public JmsTemplate jmsTemplate(ActiveMQConnectionFactory activeMQConnectionFactory, Queue queue) {
 		JmsTemplate jmsTemplate = new JmsTemplate();
-		jmsTemplate.setDeliveryMode(2);// 进行持久化配置 1表示非持久化，2表示持久化
+		// 进行持久化配置 1表示非持久化，2表示持久化
+		// 源码中: static final int PERSISTENT = 2;默认为2，可以不用再设置
+		jmsTemplate.setDeliveryMode(2);
 		jmsTemplate.setConnectionFactory(activeMQConnectionFactory);
-		jmsTemplate.setDefaultDestination(queue); // 此处可不设置默认，在发送消息时也可设置队列
-		jmsTemplate.setSessionAcknowledgeMode(4);// 客户端签收模式
+		// 此处可不设置默认，在发送消息时也可设置队列
+		jmsTemplate.setDefaultDestination(queue);
+		// 客户端签收模式
+		jmsTemplate.setSessionAcknowledgeMode(4);
 		return jmsTemplate;
 	}
 

@@ -17,7 +17,7 @@ public class ApplicationTest {
 
 	@Test
 	public void testActivemq() {
-		producer.sendMessage("look this is a message==zycc==");
+		producer.sendMessage("发送消息--->我是生产者");
 		while (true) {
 		}
 	}
